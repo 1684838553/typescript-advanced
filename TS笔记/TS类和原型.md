@@ -5,9 +5,9 @@
 
 ### 2. 没有用原型会有什么问题？
 
-**总结问题:**所有`QQUser`对象（`QQUser`实例）都有相同的好友属性，好友属性用`commonfriends`表示，所有`QQUser`对象都有相同的`show`方法。但我们发现每一个`QQUser`对象都单独分配一个`commonfriends`属性空间和`show`方法空间。`导致大量空间浪费`
+**总结问题**:  所有`QQUser`对象（`QQUser`实例）都有相同的好友属性，好友属性用`commonfriends`表示，所有`QQUser`对象都有相同的`show`方法。但我们发现每一个`QQUser`对象都单独分配一个`commonfriends`属性空间和`show`方法空间。`导致大量空间浪费`
 
-**答案:**使用原型解决所有实例上的方法，还有所有实例上的共同属性都可以放到原型上定义
+**答案**:  使用原型解决所有实例上的方法，还有所有实例上的共同属性都可以放到原型上定义
 
 ![请添加图片描述](https://img-blog.csdnimg.cn/cc05156f53cd48a8b3b5a92843f5a7d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
