@@ -1,17 +1,12 @@
 ### 1. 为什么要用原型（好处）
 
 原型上所有的方法和属性都可以被构造函数`实际开发原型主要共享方法和所有实例公用引用属性`的实例共享，那么为什么要共享呢？`节省内存空间`
-![请添加图片描述](https://img-blog.csdnimg.cn/bff5845924794e678028c3a2073a34b4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 ### 2. 没有用原型会有什么问题？
 
-**总结问题**:  所有`QQUser`对象（`QQUser`实例）都有相同的好友属性，好友属性用`commonfriends`表示，所有`QQUser`对象都有相同的`show`方法。但我们发现每一个`QQUser`对象都单独分配一个`commonfriends`属性空间和`show`方法空间。`导致大量空间浪费`
+**总结问题**: 所有`QQUser`对象（`QQUser`实例）都有相同的好友属性，好友属性用`commonfriends`表示，所有`QQUser`对象都有相同的`show`方法。但我们发现每一个`QQUser`对象都单独分配一个`commonfriends`属性空间和`show`方法空间。`导致大量空间浪费`
 
-**答案**:  使用原型解决所有实例上的方法，还有所有实例上的共同属性都可以放到原型上定义
-
-![请添加图片描述](https://img-blog.csdnimg.cn/cc05156f53cd48a8b3b5a92843f5a7d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16)
-
-![请添加图片描述](https://img-blog.csdnimg.cn/fa2dfe695ddc4afe870599389de52027.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16)
+**答案**: 使用原型解决所有实例上的方法，还有所有实例上的共同属性都可以放到原型上定义
 
 ### 3. 认识函数 + 原型定义
 
@@ -40,3 +35,29 @@
 ### 5.2 增加或修改原型对象的属性或方法后，所有实例对象立即可以访问的到`但创建实例后在覆盖原型除外`
 
 ### 5.3 高频面试题：创建实例后在覆盖原型，实例对象无法访问到，为什么
+
+```javascript
+/* ----------- 高频面试题：创建实例后在覆盖原型，实例对象无法访问到，为什么 ------------- */
+// 给构造函数的原型重新赋值
+QQUser.prototype = {
+  commonfriends: ["海草", "猫陛下", "男神"],
+};
+
+console.log("zhangshan", zhangshan.commonfriends);
+// zhangshan [ '骑驴看海', '大漠上的英雄', '小草' ]
+
+console.log("QQUser.prototype", QQUser.prototype.commonfriends);
+// QQUser.prototype [ '海草', '猫陛下', '男神' ]
+
+let yaoguang = new QQUser("摇光", 12, "猫陛下");
+console.log("yaoguang", yaoguang.commonfriends);
+// yaoguang [ '海草', '猫陛下', '男神' ]
+
+/**
+ * zhangshan的原型对象指向还是原来的空间
+ * 我们改变的是原型对象的指向空间
+ * 从上往下执行，不能改变已经分配好的内存空间
+ */
+```
+
+### 思考题：`zhangshan.__proto__.show()`和`zhangshan.show()`输出结果完全一样吗？为什么呢

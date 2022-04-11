@@ -1,3 +1,6 @@
+// https://img-blog.csdnimg.cn/bff5845924794e678028c3a2073a34b4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16
+// https://img-blog.csdnimg.cn/cc05156f53cd48a8b3b5a92843f5a7d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZHJ1bmvllrXlkqo=,size_20,color_FFFFFF,t_70,g_se,x_16
+
 function QQUser(QQNo, QQAge, QQMark) {
   this.QQNo = QQNo;
   this.QQAge = QQAge;
