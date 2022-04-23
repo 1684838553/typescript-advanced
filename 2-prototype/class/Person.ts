@@ -23,3 +23,8 @@ zhangsan.doEat("里斯", "王府井");
 console.log(zhangsan);
 
 // 方法二:通过构造函数（构造器）来赋值
+const person = new Object({ name: "terry" });
+console.log(person); // { name: 'terry' }
+
+// 将该文件设置为一个module,避免与其他文件变量名冲突
+export default {};
