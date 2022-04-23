@@ -39,6 +39,7 @@ function getMessage(
   value: number | MessageType
 ): Message | undefined | Array<Message> {
   if (typeof value === "number") {
+    // 没有找到，返回undefined
     return messages.find((msg) => msg.id === value);
   } else {
     return messages.filter((msg) => msg.type === value);
@@ -46,5 +47,20 @@ function getMessage(
 }
 
 console.log(getMessage(1), getMessage("image"));
+
+// ts重载
+function getMessages(id: number): Message; // 重载签名，可以与多个
+function getMessages(msgType: MessageType): Message[];
+// 实现签名函数，只有实现签名才有函数体，实现签名只有一个
+// 实现签名参数类型必须兼容多个重载签名函数参数，返回值也要兼容
+function getMessages(payload_frompage: any): Message[] | Message | undefined {
+  if (typeof payload_frompage === "number") {
+    // 没有找到，返回undefined
+    return messages.find((msg) => msg.id === payload_frompage);
+  } else {
+    return messages.filter((msg) => msg.type === payload_frompage);
+  }
+}
+console.log(getMessages(1), getMessages("image"));
 
 export {};
