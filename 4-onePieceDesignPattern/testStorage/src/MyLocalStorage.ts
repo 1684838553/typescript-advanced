@@ -24,11 +24,11 @@ class MyLocalStorage {
     return new MyLocalStorage();
   }
   // 保存 key-value
-  public static setItem(key: string, value: any) {
+  public setItem(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  public static getItem(key: string) {
+  public getItem(key: string) {
     let value = localStorage.getItem(key);
     return value ? JSON.parse(value) : null;
   }
