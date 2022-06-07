@@ -19,3 +19,5 @@ let obj2 = {
 // 把obj对象变量传递给keys静态方法，obj对象变量作为keys静态方法的参数
 let keys = Object.keys(obj2);
 console.log(keys); // [ 'username', 'age' ]
+
+export {};
