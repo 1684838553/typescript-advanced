@@ -31,4 +31,20 @@ function strSelfSort(str: string): string {
 }
 console.log(strSelfSort("cbaimcnd")); // abccdimn
 
+// 中文 + 英文、数字数组排序
+function isChinese<T>(arr: Array<T>): boolean {
+  let pattern = /[\u4e00-\u9fa5]+/g;
+  return arr.some((item: any) => pattern.test(item));
+}
+
+function sort<T>(arr: Array<T>): Array<T> {
+  if (isChinese(arr)) {
+    return sortChinese(arr);
+  }
+  let newArr: any = arr.map((item) => {
+    return typeof item === "string" ? strSelfSort(item) : item;
+  });
+  return quickSort(newArr);
+}
+
 export {};
